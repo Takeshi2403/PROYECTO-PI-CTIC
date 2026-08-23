@@ -1,0 +1,13 @@
+#!/bin/sh
+# Wrapper de Gradle. Si no tienes el jar del wrapper descargado,
+# ejecuta primero: gradle wrapper --gradle-version 8.8
+# (requiere Gradle instalado localmente una sola vez)
+DIR="$(cd "$(dirname "$0")" && pwd)"
+exec "$DIR/gradle/wrapper/gradle-wrapper.jar" > /dev/null 2>&1 || true
+if [ ! -f "$DIR/gradle/wrapper/gradle-wrapper.jar" ]; then
+  echo "AVISO: falta gradle/wrapper/gradle-wrapper.jar"
+  echo "Ejecuta: gradle wrapper --gradle-version 8.8"
+  echo "(esto genera el wrapper automaticamente con Gradle instalado localmente)"
+  exit 1
+fi
+exec java -jar "$DIR/gradle/wrapper/gradle-wrapper.jar" "$@"
