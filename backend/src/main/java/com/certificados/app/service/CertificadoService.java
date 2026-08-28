@@ -35,6 +35,12 @@ public class CertificadoService {
                 .collect(Collectors.toList());
     }
 
+    public List<CertificadoDTO> listarPorEstado(EstadoCertificado estado) {
+    return certificadoRepository.findByEstado(estado).stream()
+            .map(this::toDTO)
+            .collect(Collectors.toList());
+    }
+
     public List<CertificadoDTO> listarPorEstudiante(Long estudianteId) {
         return certificadoRepository.findByEstudianteId(estudianteId).stream()
                 .map(this::toDTO)

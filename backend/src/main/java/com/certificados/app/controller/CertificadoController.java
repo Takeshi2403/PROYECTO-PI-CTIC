@@ -2,6 +2,7 @@ package com.certificados.app.controller;
 
 import com.certificados.app.dto.CertificadoDTO;
 import com.certificados.app.dto.HistorialEstadoCertificadoDTO;
+import com.certificados.app.model.EstadoCertificado;
 import com.certificados.app.service.CertificadoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,11 @@ public class CertificadoController {
     @GetMapping
     public List<CertificadoDTO> listar() {
         return certificadoService.listarTodos();
+    }
+
+    @GetMapping("/estado/{estado}")
+    public List<CertificadoDTO> listarPorEstado(@PathVariable EstadoCertificado estado) {
+        return certificadoService.listarPorEstado(estado);
     }
 
     @GetMapping("/estudiante/{estudianteId}")
