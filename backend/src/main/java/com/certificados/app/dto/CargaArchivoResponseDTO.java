@@ -1,30 +1,21 @@
-package com.certificados.app.model;
+package com.certificados.app.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "documentos")
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Documento {
-
-    @Id
+public class CargaArchivoResponseDTO {
     private String id;
     private String nombreOriginal;
-    private String rutaAlmacenamiento;
     private String tipoDocumento;
     private long tamanoBytes;
+    private String mensaje;
     private LocalDateTime fechaCarga;
 }

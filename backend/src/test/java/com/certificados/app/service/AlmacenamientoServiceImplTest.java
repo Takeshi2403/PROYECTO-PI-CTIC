@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.certificados.app.model.Documento;
+import com.certificados.app.service.impl.AlmacenamientoServiceImpl;
 
 public class AlmacenamientoServiceImplTest {
 
