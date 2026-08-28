@@ -1,6 +1,7 @@
 package com.certificados.app.controller;
 
 import com.certificados.app.dto.CertificadoDTO;
+import com.certificados.app.dto.HistorialEstadoCertificadoDTO;
 import com.certificados.app.service.CertificadoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,13 +23,18 @@ public class CertificadoController {
     }
 
     @GetMapping("/estudiante/{estudianteId}")
-    public List<CertificadoDTO> listarPorEstudiante(@PathVariable Long estudianteId) {
+    public List<CertificadoDTO> listarPorEstudiante(@PathVariable("estudianteId") Long estudianteId) {
         return certificadoService.listarPorEstudiante(estudianteId);
     }
 
     @GetMapping("/{id}")
-    public CertificadoDTO buscarPorId(@PathVariable Long id) {
+    public CertificadoDTO buscarPorId(@PathVariable("id") Long id) {
         return certificadoService.buscarPorId(id);
+    }
+
+    @GetMapping("/{id}/historial")
+    public List<HistorialEstadoCertificadoDTO> historial(@PathVariable("id") Long id) {
+        return certificadoService.listarHistorial(id);
     }
 
     @PostMapping
@@ -38,12 +44,12 @@ public class CertificadoController {
     }
 
     @PatchMapping("/{id}/emitir")
-    public CertificadoDTO emitir(@PathVariable Long id) {
+    public CertificadoDTO emitir(@PathVariable("id") Long id) {
         return certificadoService.emitir(id);
     }
 
     @PatchMapping("/{id}/anular")
-    public CertificadoDTO anular(@PathVariable Long id) {
+    public CertificadoDTO anular(@PathVariable("id") Long id) {
         return certificadoService.anular(id);
     }
 }
